@@ -1,0 +1,3 @@
+0  0  * * * /app/atlassian/bamboo/backup/bin/bamboo.diy-backup.sh >/app/atlassian/bamboo/backup/log/bamboo-backup.log 2>&1
+50 23 * * * /app/atlassian/bamboo/backup/bin/rotate-log.sh >/dev/null 2>&1
+
