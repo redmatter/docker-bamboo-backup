@@ -49,7 +49,7 @@ RUN ( \
         cron-user add -u $BAMBOO_USER -g $BAMBOO_GROUP; \
 
 		# set correct permissions
-		chown -R ${BAMBOO_USER}:${BAMBOO_GROUP} . /var/atlassian/application-data/bamboo ; \
+		chown -R ${BAMBOO_USER}:${BAMBOO_GROUP} . /var/atlassian/application-data/bamboo /bamboo-backups ; \
 		chmod -R go-rwx /bamboo-backups log bin tmp archives /var/atlassian/application-data/bamboo ; \
 
 		# remove packages that we don't need
