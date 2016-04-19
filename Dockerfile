@@ -56,10 +56,7 @@ RUN ( \
         apt-get remove -y $BUILD_DEPS ; \
         apt-get autoremove -y ; \
         apt-get clean; \
-        rm -rf /var/lib/apt/; \
-        rm -rf /var/lib/dpkg/; \
-        rm -rf /var/lib/cache/; \
-        rm -rf /var/lib/log/; \
+        rm -rf /var/lib/apt/ /var/lib/dpkg/ /var/lib/cache/ /var/lib/log/; \
     )
 
 WORKDIR ${BAMBOO_BACKUP_HOME}
