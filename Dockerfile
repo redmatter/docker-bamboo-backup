@@ -24,7 +24,7 @@ ENV BAMBOO_BACKUP_LOG=${BAMBOO_BACKUP_HOME}/log/bamboo-backup.log \
     RUN_GROUP=${BAMBOO_GROUP}
 
 # pull in the bits we need for the build
-ADD https://github.com/redmatter/atlassian-bamboo-diy-backup/archive/rename-and-fix-bitbucket-references.zip /tmp/files.zip
+ADD https://github.com/redmatter/atlassian-bamboo-diy-backup/archive/1.0.0-beta.zip /tmp/files.zip
 COPY bamboo.diy-backup.vars.sh rotate-log.sh /tmp/
 
 RUN ( \
