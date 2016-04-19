@@ -12,7 +12,12 @@ ENV TZ="Europe/London" \
     MYSQL_HOST=mysql \
     MYSQL_DATABASE=bamboo \
     MYSQL_USER=atlbamboo \
-    MYSQL_PASSWORD=letmein
+    MYSQL_PASSWORD=letmein \
+    PRESERVE_ENV_VARS="MYSQL_HOST MYSQL_DATABASE MYSQL_USER MYSQL_PASSWORD \
+        RUN_USER RUN_GROUP \
+        BAMBOO_USER BAMBOO_GROUP \
+        BAMBOO_BACKUP_USER BAMBOO_BACKUP_PASS \
+        BAMBOO_URL BAMBOO_BACKUP_EXCLUDE"
 ENV BAMBOO_BACKUP_LOG=${BAMBOO_BACKUP_HOME}/log/bamboo-backup.log \
     # semantics to work with cron base image
     RUN_USER=${BAMBOO_USER} \
