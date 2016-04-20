@@ -42,7 +42,7 @@ RUN ( \
         mkdir -p ${BAMBOO_BACKUP_HOME} ; \
         cd ${BAMBOO_BACKUP_HOME} ; \
 
-        mkdir -p /bamboo-backups log bin archives tmp tmp/bamboo-db tmp/bamboo-home /var/atlassian/application-data/bamboo ; \
+        mkdir -p /bamboo-backups log bin archives tmp/bamboo-db tmp/bamboo-home /var/atlassian/application-data/bamboo ; \
         touch ${BAMBOO_BACKUP_LOG} ; \
 
         # extract the archive, apply patch and add the config
