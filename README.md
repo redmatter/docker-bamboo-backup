@@ -1,9 +1,10 @@
 # docker-bamboo-backup
 
 This is the source of the docker image [`redmatter/bamboo-backup`](https://hub.docker.com/r/redmatter/bamboo-backup/).
-It repackages the Bamboo DIY backup scripts, with basic settings appropriate for Red Matter. More work need to be done
-to make it more generic, to work with other databases and deployment combinations. In its current shape, it works with
-MySQL as database and using `rsync` for home directory backup.
+It repackages the [Bamboo DIY backup scripts](https://github.com/redmatter/atlassian-bamboo-diy-backup), with basic
+settings appropriate for Red Matter. More work needs to be done to make it more generic, to work with other databases
+and deployment combinations. In its current shape, it works with MySQL as database and using `rsync` for home directory
+backup.
 
 ## How to use it?
 
