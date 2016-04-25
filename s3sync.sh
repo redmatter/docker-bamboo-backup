@@ -6,6 +6,9 @@
 : ${AWS_S3_BUCKET:?"AWS Bucket name not specified (AWS_S3_BUCKET)"}
 : ${AWS_S3_BUCKET_PATH:=}
 
+: ${DEBUG:=0}
+[ "$DEBUG" = 1 ] && set -x;
+
 sed -i "s~{{AWS_ACCESS_KEY}}~${AWS_ACCESS_KEY}~g;
     s~{{AWS_SECRET_KEY}}~${AWS_SECRET_KEY}~g;
     s~{{GPG_PASSPHRASE}}~${GPG_PASSPHRASE}~g;" \
