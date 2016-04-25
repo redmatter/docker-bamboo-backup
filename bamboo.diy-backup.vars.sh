@@ -18,7 +18,7 @@ BACKUP_DATABASE_TYPE=mysql
 BACKUP_HOME_TYPE=rsync
 
 # Which archive backup script to use (ex: tar, tar-gpg)
-BACKUP_ARCHIVE_TYPE=tar
+BACKUP_ARCHIVE_TYPE=${BACKUP_ARCHIVE_TYPE:=tar}
 
 # Used by the scripts for verbose logging. If not true only errors will be shown.
 BAMBOO_VERBOSE_BACKUP=TRUE
