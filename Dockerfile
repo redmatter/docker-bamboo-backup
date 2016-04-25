@@ -61,7 +61,7 @@ RUN ( \
         chmod -R go-rwx /bamboo-backups log bin tmp archives /var/atlassian/application-data/bamboo ; \
 
         # move s3 configs to BAMBOO_BACKUP_HOME
-        mv /tmp/s3cfg.ini .
+        mv /tmp/s3cfg.ini .; \
 
         # remove packages that we don't need
         apt-get remove -y $BUILD_DEPS ; \
