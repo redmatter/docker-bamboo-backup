@@ -21,7 +21,7 @@ ENV TZ="Europe/London" \
         BAMBOO_BACKUP_HOME \
         AWS_ACCESS_KEY AWS_SECRET_KEY GPG_PASSPHRASE \
         AWS_S3_BUCKET AWS_S3_BUCKET_PATH \
-        GPG_PASSPHRASE \
+        GPG_MODE GPG_RECIPIENT GPG_PASSPHRASE \
         "
 ENV BAMBOO_BACKUP_LOG=${BAMBOO_BACKUP_HOME}/log/bamboo-backup.log \
     # semantics to work with cron base image

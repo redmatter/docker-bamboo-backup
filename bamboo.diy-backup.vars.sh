@@ -73,5 +73,14 @@ HIPCHAT_URL=https://api.hipchat.com
 HIPCHAT_ROOM=
 HIPCHAT_TOKEN=
 
-# Options for the tar-gpg archive type
-BAMBOO_BACKUP_GPG_RECIPIENT=
+# Options for the tar-gpg; gpg encryption mode.
+# Available options are 'symmetric' or 'asymmetric'
+# Default: 'asymmetric'
+BAMBOO_BACKUP_GPG_MODE=${GPG_MODE}
+
+# tar-gpg option; if 'asymmetric', specify the recipient user ID
+# See gpg documentation (man gpg) section: HOW TO SPECIFY A USER ID
+BAMBOO_BACKUP_GPG_RECIPIENT=${GPG_RECIPIENT}
+
+# tar-gpg option; if 'symmetric', specify the passphrase
+BAMBOO_BACKUP_GPG_PASSPHRASE=${GPG_PASSPHRASE}
