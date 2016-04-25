@@ -17,7 +17,10 @@ ENV TZ="Europe/London" \
         RUN_USER RUN_GROUP \
         BAMBOO_USER BAMBOO_GROUP \
         BAMBOO_BACKUP_USER BAMBOO_BACKUP_PASS \
-        BAMBOO_URL BAMBOO_BACKUP_EXCLUDE"
+        BAMBOO_URL BAMBOO_BACKUP_EXCLUDE \
+        BAMBOO_BACKUP_HOME \
+        AWS_ACCESS_KEY AWS_SECRET_KEY GPG_PASSPHRASE \
+        "
 ENV BAMBOO_BACKUP_LOG=${BAMBOO_BACKUP_HOME}/log/bamboo-backup.log \
     # semantics to work with cron base image
     RUN_USER=${BAMBOO_USER} \
@@ -25,12 +28,12 @@ ENV BAMBOO_BACKUP_LOG=${BAMBOO_BACKUP_HOME}/log/bamboo-backup.log \
 
 # pull in the bits we need for the build
 ADD https://github.com/redmatter/atlassian-bamboo-diy-backup/archive/1.0.0-beta.zip /tmp/files.zip
-COPY bamboo.diy-backup.vars.sh rotate-log.sh /tmp/
+COPY bamboo.diy-backup.vars.sh rotate-log.sh s3cfg.ini /tmp/
 
 RUN ( \
         export DEBIAN_FRONTEND=noninteractive; \
         export BUILD_DEPS="unzip"; \
-        export APP_DEPS="tar mysql-client jq rsync curl ca-certificates"; \
+        export APP_DEPS="tar mysql-client jq rsync curl ca-certificates s3cmd"; \
 
         # so that each command can be seen clearly in the build output
         set -e -x; \
@@ -56,6 +59,9 @@ RUN ( \
         # set correct permissions
         chown -R ${BAMBOO_USER}:${BAMBOO_GROUP} . /var/atlassian/application-data/bamboo /bamboo-backups ; \
         chmod -R go-rwx /bamboo-backups log bin tmp archives /var/atlassian/application-data/bamboo ; \
+
+        # move s3 configs to BAMBOO_BACKUP_HOME
+        mv /tmp/s3cfg.ini .
 
         # remove packages that we don't need
         apt-get remove -y $BUILD_DEPS ; \
