@@ -1,5 +1,9 @@
 #!/bin/bash
 
+: ${AWS_ACCESS_KEY:?"AWS Access key not specified (AWS_ACCESS_KEY)"}
+: ${AWS_SECRET_KEY:?"AWS Secret key not specified (AWS_SECRET_KEY)"}
+: ${GPG_PASSPHRASE:?"GPG Encryption passphrase not specified (GPG_PASSPHRASE)"}
+
 sed -i "s~{{AWS_ACCESS_KEY}}~${AWS_ACCESS_KEY}~g;
     s~{{AWS_SECRET_KEY}}~${AWS_SECRET_KEY}~g;
     s~{{GPG_PASSPHRASE}}~${GPG_PASSPHRASE}~g;" \
