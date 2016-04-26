@@ -26,7 +26,8 @@ ENV TZ="Europe/London" \
 ENV BAMBOO_BACKUP_LOG=${BAMBOO_BACKUP_HOME}/log/bamboo-backup.log \
     # semantics to work with cron base image
     RUN_USER=${BAMBOO_USER} \
-    RUN_GROUP=${BAMBOO_GROUP}
+    RUN_GROUP=${BAMBOO_GROUP} \
+    GNUPGHOME=${BAMBOO_BACKUP_HOME}/.gnupg
 
 # pull in the bits we need for the build
 ADD https://github.com/redmatter/atlassian-bamboo-diy-backup/archive/fix-issue-3-add-symmetric-gpg-encryprion.zip /tmp/files.zip
