@@ -4,7 +4,9 @@ This is the source of the docker image [`redmatter/bamboo-backup`](https://hub.d
 It repackages the [Bamboo DIY backup scripts](https://github.com/redmatter/atlassian-bamboo-diy-backup), with basic
 settings appropriate for Red Matter. More work needs to be done to make it more generic, to work with other databases
 and deployment combinations. In its current shape, it works with MySQL as database and using `rsync` for home directory
-backup.
+backup. Archive formats `tar` and `tar-gpg` are supported.
+
+It also comes with an Amazon&reg; S3 sync client based on `s3cmd` tool. See S3 backup section below for config options.
 
 ## How to use it?
 
@@ -30,4 +32,11 @@ place, you may use the below formula.
     docker run --rm -it --name copy-bamboo-backup \
       --volumes-from bamboo-backup -v /path/to/a-safe-place/:/safe-place \
       busybox cp /bamboo-backups/* /safe-place/.
+
+## Amazon&reg; S3 Backup
+
+    `AWS_ACCESS_KEY` - Access Key
+    `AWS_SECRET_KEY` - Secret Key
+    `AWS_S3_BUCKET` - Bucket name
+    `AWS_S3_BUCKET_PATH` - Optional path within bucket
 
