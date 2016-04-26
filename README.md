@@ -35,8 +35,8 @@ place, you may use the below formula.
 
 ## Amazon&reg; S3 Backup
 
-    `AWS_ACCESS_KEY` - Access Key
-    `AWS_SECRET_KEY` - Secret Key
-    `AWS_S3_BUCKET` - Bucket name
-    `AWS_S3_BUCKET_PATH` - Optional path within bucket
+    AWS_ACCESS_KEY - Access Key
+    AWS_SECRET_KEY - Secret Key
+    AWS_S3_BUCKET - Bucket name
+    AWS_S3_BUCKET_PATH - Optional path within bucket
 
