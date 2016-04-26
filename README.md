@@ -40,3 +40,11 @@ place, you may use the below formula.
     AWS_S3_BUCKET - Bucket name
     AWS_S3_BUCKET_PATH - Optional path within bucket
 
+## GPG Encrypted Backup Archives
+
+If you prefer to create GPG encrypted backup archives, rather than plain tar balls, you need to specify
+`BACKUP_ARCHIVE_TYPE=tar-gpg`. The GPG encryptor can be further configured to do either symmetric or asymmetric
+encryption by using the variable `GPG_MODE`. For `GPG_MODE=symmetric` you would also need to specify a passphrase using
+the variable `GPG_PASSPHRASE`. If you choose `GPG_MODE=asymmetric`, then you will have to specify a GPG key using the
+semantics defined in GPG documentation ([`man gpg`](https://www.gnupg.org/gph/de/manual/r1023.html#AEN1789)).
+
