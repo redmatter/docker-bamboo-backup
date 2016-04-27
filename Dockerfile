@@ -18,19 +18,19 @@ ENV TZ="Europe/London" \
         BAMBOO_USER BAMBOO_GROUP \
         BAMBOO_BACKUP_USER BAMBOO_BACKUP_PASS \
         BAMBOO_URL BAMBOO_BACKUP_EXCLUDE \
-        BAMBOO_BACKUP_HOME \
-        AWS_ACCESS_KEY AWS_SECRET_KEY GPG_PASSPHRASE \
-        AWS_S3_BUCKET AWS_S3_BUCKET_PATH \
-        GPG_PASSPHRASE \
+        BAMBOO_BACKUP_HOME BACKUP_ARCHIVE_TYPE \
+        AWS_ACCESS_KEY AWS_SECRET_KEY AWS_S3_BUCKET AWS_S3_BUCKET_PATH \
+        GPG_MODE GPG_RECIPIENT GPG_PASSPHRASE \
         "
 ENV BAMBOO_BACKUP_LOG=${BAMBOO_BACKUP_HOME}/log/bamboo-backup.log \
     # semantics to work with cron base image
     RUN_USER=${BAMBOO_USER} \
-    RUN_GROUP=${BAMBOO_GROUP}
+    RUN_GROUP=${BAMBOO_GROUP} \
+    GNUPGHOME=${BAMBOO_BACKUP_HOME}/.gnupg
 
 # pull in the bits we need for the build
-ADD https://github.com/redmatter/atlassian-bamboo-diy-backup/archive/1.0.0-beta.zip /tmp/files.zip
-COPY bamboo.diy-backup.vars.sh rotate-log.sh s3sync.sh s3cfg.ini /tmp/
+ADD https://github.com/redmatter/atlassian-bamboo-diy-backup/archive/1.0.0.zip /tmp/files.zip
+COPY bamboo.diy-backup.vars.sh rotate-log.sh s3sync.sh s3cfg.ini run-backup.sh /tmp/
 
 RUN ( \
         export DEBIAN_FRONTEND=noninteractive; \
@@ -53,7 +53,7 @@ RUN ( \
         # extract the archive, apply patch and add the config
         unzip -j -d bin /tmp/files.zip ; \
         rm /tmp/files.zip ; \
-        mv /tmp/bamboo.diy-backup.vars.sh /tmp/rotate-log.sh /tmp/s3sync.sh bin ; \
+        mv /tmp/bamboo.diy-backup.vars.sh /tmp/rotate-log.sh /tmp/s3sync.sh /tmp/run-backup.sh bin ; \
 
         # create user with crontab capability
         cron-user add -u $BAMBOO_USER -g $BAMBOO_GROUP; \

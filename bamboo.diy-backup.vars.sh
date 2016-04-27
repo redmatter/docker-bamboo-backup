@@ -18,7 +18,7 @@ BACKUP_DATABASE_TYPE=mysql
 BACKUP_HOME_TYPE=rsync
 
 # Which archive backup script to use (ex: tar, tar-gpg)
-BACKUP_ARCHIVE_TYPE=tar
+BACKUP_ARCHIVE_TYPE=${BACKUP_ARCHIVE_TYPE:=tar}
 
 # Used by the scripts for verbose logging. If not true only errors will be shown.
 BAMBOO_VERBOSE_BACKUP=TRUE
@@ -63,7 +63,7 @@ POSTGRES_PASSWORD=
 POSTGRES_PORT=5432
 
 # MySQL options
-# MYSQL_HOST=${MYSQL_HOST}
+MYSQL_HOST=${MYSQL_HOST}
 MYSQL_USERNAME=${MYSQL_USER}
 MYSQL_PASSWORD=${MYSQL_PASSWORD}
 MYSQL_BACKUP_OPTIONS=
@@ -73,5 +73,14 @@ HIPCHAT_URL=https://api.hipchat.com
 HIPCHAT_ROOM=
 HIPCHAT_TOKEN=
 
-# Options for the tar-gpg archive type
-BAMBOO_BACKUP_GPG_RECIPIENT=
+# Options for the tar-gpg; gpg encryption mode.
+# Available options are 'symmetric' or 'asymmetric'
+# Default: 'asymmetric'
+BAMBOO_BACKUP_GPG_MODE=${GPG_MODE}
+
+# tar-gpg option; if 'asymmetric', specify the recipient user ID
+# See gpg documentation (man gpg) section: HOW TO SPECIFY A USER ID
+BAMBOO_BACKUP_GPG_RECIPIENT=${GPG_RECIPIENT}
+
+# tar-gpg option; if 'symmetric', specify the passphrase
+BAMBOO_BACKUP_GPG_PASSPHRASE=${GPG_PASSPHRASE}
