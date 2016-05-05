@@ -29,7 +29,7 @@ ENV BAMBOO_BACKUP_LOG=${BAMBOO_BACKUP_HOME}/log/bamboo-backup.log \
     GNUPGHOME=${BAMBOO_BACKUP_HOME}/.gnupg
 
 # pull in the bits we need for the build
-ADD https://github.com/redmatter/atlassian-bamboo-diy-backup/archive/1.0.0.zip /tmp/files.zip
+ADD https://github.com/redmatter/atlassian-bamboo-diy-backup/archive/1.0.1.zip /tmp/files.zip
 COPY bamboo.diy-backup.vars.sh rotate-log.sh s3sync.sh s3cfg.ini run-backup.sh /tmp/
 
 RUN ( \
